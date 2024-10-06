@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Course Selection</h2>
+    <select id="course">
+        <option value="0">OOAD</option>
+        <option value="1">AI</option>
+        <option value="2">ML</option>
+        <option value="3">IP</option>
+    </select>
+    <button onclick="display()">Select</button>
+    <div id="details" class="course-details"></div>
+    <script>
+    let names = ["OOAD","AI","ML","IP"];
+    let ids = ["CS101","CS102","CS103","CS104"];
+    let students=[
+        ["Alex-31270","Barnes-31271","Charlotte-31273"], 
+        ["Mathew-31279","Nick-31281","Peter-31282"],
+        ["Gia-31274","Iva-31275","Rio-31284"],
+        ["Lily-31276","Mia-31277","Steve-312386"]
+    ];
+    function display() {
+        let course= document.getElementById("course");
+        let index = course.value-1; 
+        let details = document.getElementById("details");
+        details.innerHTML = '';
+        if(index>=0){
+            let info= "<h3>Course Name: " + names[index] + "</h3>" +
+                             "<p>Course ID: " + ids[index] + "</p>" +
+                             "<h4>Enrolled Students:</h4>";
+            info += "<table><tr><th>Name</th><th>Roll Number</th></tr>";
+            for (let i=0;i<students[index].length;i++){
+                let sinfo=students[index][i].split("-");
+                info +="<tr><td>" + sinfo[0] + "</td><td>" + sinfo[1] + "</td></tr>";
+            }
+            info += "</table>";
+            details.innerHTML=info;
+        } else {
+            alert("Please select a course.");
+        }
+    }
+</script>
+</body>
+</html>
